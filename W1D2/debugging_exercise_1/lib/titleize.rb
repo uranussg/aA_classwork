@@ -6,14 +6,16 @@
 
 require "byebug"
 
-little_words = [ "and", "the", "over", "a", "on", "of" ]
+def capitalize(word)
+  return word[0].upcase + word[1..-1]
+end
 
 def titleize(title)
   words = title.split(" ")
-
-  titleized_words = words.map.with_index do |i, word|
+  little_words = [ "and", "the", "over", "a", "on", "of" ]
+  titleized_words = words.map.with_index do |word, i|
     if i == 0 || !little_words.include?(word)
-      word.capitalize
+      capitalize(word)
     else
       word.downcase
     end
@@ -21,3 +23,5 @@ def titleize(title)
 
   titleized_words.join(" ")
 end
+
+p titleize("the bridge on the river kwai")

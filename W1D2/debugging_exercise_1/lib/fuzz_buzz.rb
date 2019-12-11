@@ -9,10 +9,12 @@ def fuzz_buzz(num)
     numbers = []
 
     (1..num).each do |i|
-        if i % 3 != 0 || i % 5 != 0
+        if i % 3 != 0 && i % 5 != 0
             numbers << i
         end
     end
 
     numbers
 end
+
+p fuzz_buzz(13)
