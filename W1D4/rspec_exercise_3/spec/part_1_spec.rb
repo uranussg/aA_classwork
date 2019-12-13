@@ -1,4 +1,4 @@
- Nrequire "part_1"
+ require "part_1"
 
 describe "PART 1" do
   describe "is_prime?" do
