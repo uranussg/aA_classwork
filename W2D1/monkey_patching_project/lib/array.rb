@@ -66,8 +66,8 @@ class Array
     def my_transpose
         new_arr = Array.new(self[0].length){Array.new(self.length)}
         
-        self.each_with_index do |subArr, r|
-            subArr.each_with_index do |ele, c|
+        self.each_with_index do |subarr, r|
+        subarr.each_with_index do |ele, c|
                 new_arr[c][r] = ele
             end
         end

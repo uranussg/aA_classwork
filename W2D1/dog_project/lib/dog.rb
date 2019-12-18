@@ -1,5 +1,5 @@
 class Dog
-
+    @@legs = 4
     def initialize(name, breed, age, bark, favorite_foods)
         @name = name
         @breed = breed
@@ -23,7 +23,10 @@ class Dog
     def age=(num)
         @age = num
     end
-
+   
+    def self.legs
+        @@legs
+    end
     def bark
         @age > 3? @bark.upcase : @bark.downcase
     end
