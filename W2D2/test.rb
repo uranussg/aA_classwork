@@ -20,3 +20,6 @@ lily = Teddy.new('lily', 4, 'white')
 p lily.age
 p lily.color
 p lily.legs
+
+
+arr.sample
