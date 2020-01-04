@@ -36,16 +36,28 @@ class Array
     def deep_dup
 
 #       return self.dup if self.all?{|ele| !ele.is_a?(Array)}
-       arr = self.each  do |ele| 
+       arr = self.map  do |ele| 
             if ele.is_a?(Array)
                 ele.deep_dup
+            else
+                ele
             end
 
         end
+        # p arr
+        # p arr.object_id
         arr.dup
      
     end
 end
+
+a = [1, [2], [3, [4]]]
+p a.object_id
+
+a.deep_dup
+# copy_a[2][1] << 5
+# p copy_a
+# p a
 
 def fibonacii_rec(n)
     return [0] if n == 1
@@ -150,10 +162,10 @@ def permutations(array)
     ret
 end
 
-p permutations([1, 2, 3, 4]).length # => [[1, 2, 3], [1, 3, 2], => array.length !
-                        #     [2, 1, 3], [2, 3, 1],
-                        #     [3, 1, 2], [3, 2, 1]]
-p permutations([1])  # [[1]]
+# p permutations([1, 2, 3, 4]).length # => [[1, 2, 3], [1, 3, 2], => array.length !
+#                         #     [2, 1, 3], [2, 3, 1],
+#                         #     [3, 1, 2], [3, 2, 1]]
+# p permutations([1])  # [[1]]
 
 
 def greedy_make_change(target, coins=[25,10,5,1])
