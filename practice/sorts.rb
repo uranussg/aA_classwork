@@ -11,7 +11,7 @@ class Array
         sorted_left + [pivot] + sorted_right
     end
 
-    def quicksort!(l = 0, r = self.length - 1, &prc) # mutate in the origin array
+    def quicksort!(l = 0, r = self.length - 1, &prc) # mutate in the origin array， take no other spaces (save memory!)
         prc ||= Proc.new { |a, b| a <=> b  }
         return nil if l >= r
         l_pointer = l + 1
@@ -30,7 +30,7 @@ class Array
         end
         self[l], self[r_pointer] = self[r_pointer], self[l] #switch pivot with right pointer
         self.quicksort!(l, r_pointer, &prc)
-        self.quicksort!(r_pointer + 1, r, &prc) # put pivot to left to aviod infinite loop (all eles equal to pivot are in the right)
+        self.quicksort!(r_pointer + 1, r, &prc) # put pivot to left to aviod infinite loop (all other eles equal to pivot are in the right)
         self
     end
 
@@ -44,6 +44,17 @@ class Array
         sorted_right = right.mergesort(&prc)
         merge(sorted_left, sorted_right, &prc)
 
+    end
+
+    def mergesort!(l = 0, r = self.length - 1, &prc) # mutate the origin array， takes more memory than quicksort!
+        prc ||= Proc.new { |a, b| a <=> b  }
+        return nil if l >= r
+        middle = l + (r + 1- l) / 2
+    #    p middle
+        mergesort!(l, middle - 1, &prc)
+        mergesort!(middle, r, &prc)
+        merge!(l, middle, r, &prc)
+        self
     end
 
     def bubblesort(&prc)
@@ -62,7 +73,7 @@ class Array
         copy
     end
 
-    private
+ #   private
 
     def merge(left, right, &prc)
         sorted = []
@@ -72,6 +83,26 @@ class Array
             prc.call(l, r) == 1 ? sorted << right.shift : sorted << left.shift
         end
         sorted + left + right
+    end
+
+    def merge!(l, middle, r, &prc)
+        left = self[l...middle]
+        right = self[middle..r]
+        idx = l
+
+        until left.empty? || right.empty?
+            l = left.first
+            r = right.first
+            prc.call(l, r) == 1 ? self[idx] = right.shift : self[idx] = left.shift
+            idx += 1
+        end
+
+        while el = left.shift || right.shift
+            self[idx] = el
+            idx += 1
+        end
+
+        self
     end
 end
 
@@ -86,9 +117,21 @@ end
 # p a
 
 
-b = [6, 2, 6, 3, 15, 7]
-p b
+# b = [6, 2, 6, 3, 15, 7]
+# p b
 
-p b.quicksort!  {|a, b| b <=> a  }
+# p b.quicksort!  {|a, b| b <=> a  }
 
-p b
+# p b
+
+c = [6, 2, 6, 3, 15, 7]
+p c
+
+#p c.mergesort!(0, 0) 
+p c.mergesort!
+# {|a, b| b <=> a  }
+
+p c
+
+# p d = [1, 3, 5, 2, 4, 6]
+# p d.merge!(0, 3, 5) { |a, b| a <=> b  }
