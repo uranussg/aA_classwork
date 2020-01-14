@@ -106,6 +106,22 @@ class Array
     end
 end
 
+
+def b_search(l, r, arr, target)
+    return l if target <= arr[l]
+    return r + 1 if target > arr[r]
+    return l if l >= r 
+    mid = l + (r - l) / 2
+    case arr[mid] <=> target
+    when 0
+        return mid
+    when -1
+        return b_search(mid + 1, r, arr, target)
+    when 1
+        return b_search(l, mid, arr, target)
+    end
+end
+
 # a = [2, 6, 6, 3, 15, 7]
 
 # p a.quicksort { |a, b| b <=> a  } # reverse
