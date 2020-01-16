@@ -1,0 +1,131 @@
+/* Introduction to Cascading Style Sheets */
+
+body {
+  /* If the user cannot load the Arial font, the sans-serif font is used */
+  font-family: Arial, sans-serif;
+  background-color: #FEFFF1;
+  width: 900px;
+  margin: 0 auto;
+  /* align-items: flex-start; */
+  /* vertical-align: top ; */
+}
+
+h1 {
+  font-size: 38px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+/* This selector selects ALL anchor tag children of ALL list elements that
+are children of an Unordered Lsit element */
+ul li a, figcaption a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  display:inline-block;
+}
+/* This selector selects only IMMEDIATE (1 level deep) image element children
+of the header element */
+header > img {
+  width: 100px;
+}
+
+section {
+  width: 700px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+aside {
+  width: 180px;
+  display: inline-block;
+  margin-right: 15px;
+  /* vertical-align: top; */
+}
+
+.ingredients-list li {
+  margin: 15px 0;
+}
+
+/* Selects all elements with the class attribute "ingredients-list" */
+.ingredients-list {
+
+  /* The list style property is shorthand for multiple list-style properties*/
+  list-style: square inside;
+}
+
+ol {
+  list-style: upper-roman inside;
+}
+
+ol li {
+  margin: 15px 0;
+}
+
+.user_review h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* input, select {
+  display: block;
+} */
+
+select {
+  margin: 20px 0;
+}
+
+input[type='text'], select {
+  width: 300px;
+  display: block;
+}
+
+textarea {
+  width:300px;
+}
+
+label {
+  display: block;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    width: 27px;
+    height: 27px;
+    background-image: url(../assets/stars.png);
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+input[type="radio"]:checked {
+  background-position: 30px 30px;
+}
+
+
+input:last-child {
+    background: gold;
+}
+
+input:last-child:hover {
+    -webkit-filter: brightness(90%);
+}
+
+ol li:nth-of-type(2n) {
+  background-color: whitesmoke;
+}
+
+h2 + .user_review {
+    border-top: 1px solid black;
+}
+
