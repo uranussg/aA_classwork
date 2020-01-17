@@ -1,0 +1,17 @@
+body, aside, section, h1, h2, ul, li, figure, p, ol, img, input {
+  margin: inherit;
+  border: inherit;
+  padding: inherit;
+
+  font: inherit;
+}
+
+li{
+  list-style: inherit;
+  text-align: inherit;
+
+}
+
+body {
+  teline-height: 1.5px;
+}
