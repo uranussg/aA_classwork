@@ -22,6 +22,6 @@ class User < ApplicationRecord
     foreign_key: :user_id
 
   has_many :visited_urls,
-    through: visits,
-    source: visitor
+    through: :visits,
+    source: :visitor
 end

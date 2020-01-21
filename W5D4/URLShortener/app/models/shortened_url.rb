@@ -36,8 +36,8 @@ class ShortenedUrl < ApplicationRecord
     foreign_key: :shortened_url_id
 
   has_many :visitors,
-    through: visits,
-    source: url
+    through: :visits,
+    source: :url
 
   def num_clicks
     self.visits.length
