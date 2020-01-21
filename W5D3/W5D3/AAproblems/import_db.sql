@@ -72,7 +72,7 @@ INSERT INTO
 VALUES
   ('SQL', 'what is SQL', (SELECT id FROM users WHERE fname='Justin' AND lname='Fang')),
   ('123', 'how are you', (SELECT id FROM users WHERE fname='Justin' AND lname='Fang')),
-  ('hi', 'what time is class', (SELECT id FROM users WHERE fname='Justin' AND lname='Fang'))
+  ('hi', 'what time is class', (SELECT id FROM users WHERE fname='Justin' AND lname='Fang')),
   ('test', 'testeste', (SELECT id FROM users WHERE fname='Justin' AND lname='Fang'));
 
 INSERT INTO
