@@ -19,7 +19,7 @@ ul li a, figcaption a {
 
 header > img {
   width: 100px;
-  float: left;
+  /* float: left; */
 }
 
 .ingredients-list {
@@ -65,12 +65,12 @@ ol li:nth-of-type(2n) {
 h2 + .user_review {
     border-top: 1px solid black;
 }
-
+/* 
 nav {
     float: right;
-}
+} */
 
-nav ul li {
+ul li {
     display: inline-block;
 }
 
@@ -110,3 +110,8 @@ label {
     display: block;
 }
 
+
+header, nav li {
+    display: flex;
+    justify-content: space-between;
+}
