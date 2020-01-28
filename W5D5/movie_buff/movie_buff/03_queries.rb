@@ -46,15 +46,23 @@ def costars(name)
   # List the names of the actors that the named actor has ever
   # appeared with.
   # Hint: use a subquery
-  ac_movies_id = Movie.joins(:actors).where(actors: {name: name}).pluck(:id)
-  #ac_movies.joins(:actors).select("actors.name").distinct
-  Actor.joins(:movies).where("movies.id IN (?)", ac_movies_id).where.not(name: name).distinct.pluck(:name)
-
+  #subquery
+  #ac_movies_id = Movie.joins(:actors).where(actors: {name: name}).pluck(:id)
+  #Actor.joins(:movies).where("movies.id IN (?)", ac_movies_id).where.not(name: name).distinct.pluck(:name)
+  #nested joins
+  Actor
+    .joins(movies: :actors)
+    .where(name: name)
+    .where.not(actors_movies: {name: name}).distinct
+    .pluck('actors_movies.name')
+  #nested association example
+  
+  #Category.includes(articles: [{ comments: :guest }, :tags])
 end
 
 def actor_out_of_work
   # Find the number of actors in the database who have not appeared in a movie
-  Actor.left_joins(:movies).where("castings.movie_id IS NULL").count
+  Actor.left_joins(:movies).where("castings.movie_id": nil).count
 
 end
 
@@ -68,7 +76,7 @@ def starring(whazzername)
   #n = whazzername.chars.map { |char| "[#{char.upcase + char.downcase}]" }
   str = "%" + whazzername.upcase.split("").join("%") + "%"
 
-  Movie.joins(:actors).where("UPPER(actors.name) LIKE '#{str}'").distinct
+  Movie.joins(:actors).where("UPPER(actors.name) LIKE (?)", str).distinct
 end
 
 def longest_career
@@ -88,7 +96,12 @@ def longest_career
 
   # max_career
 
-  Actor.joins(:movies).group(:id).select("(MAX(movies.yr) - MIN(movies.yr)) AS career", :id, :name).order("(MAX(movies.yr) - MIN(movies.yr)) DESC").limit(3)  
+  Actor
+    .joins(:movies)
+    .group(:id)
+    .select("(MAX(movies.yr) - MIN(movies.yr)) AS career", :id, :name)
+    .order("(MAX(movies.yr) - MIN(movies.yr)) DESC")
+    .limit(3)  
 
 
 end
