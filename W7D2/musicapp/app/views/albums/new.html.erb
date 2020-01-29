@@ -1,0 +1,19 @@
+<form action="<%= albums_url %>" method='POST'>
+<input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+<label>Name
+    <input type='text' name='album[title]' value=''>
+</label>
+<br>
+<label>Year
+    <input type='date' name='album[year]' value=''>
+</label>
+<br>
+<select name="album[live]">Live or Studio
+<option value=true>Live </option>
+<option value=false>Studio </option>
+</select>
+<input type="hidden" name="album[band_id]" value="<%= @album.band_id %>">
+<input type="submit" value="Create">
+</form>

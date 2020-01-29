@@ -1,0 +1,13 @@
+<h1>Here's the Album's Info</h1>
+Title: <%= @album.title %>
+<br>
+Year: <%= @album.year %>
+<br>
+Band: <%= @album.band.name %>
+<br>
+Type:
+<% if @album.live %>
+ Live
+<% else %>
+ Studio 
+ <% end%>
