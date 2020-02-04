@@ -1,4 +1,12 @@
 class AlbumsController < ApplicationController
+  before_action :require_log_in
+  # def index
+    
+  #   @albums = Album.where(band_id: params[:band_id])
+  #   # debugger
+  #   render :index
+  # end
+
   def show
     @album = Album.find(params[:id])
     render :show
@@ -6,6 +14,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find(params[:id])
+    @bands = Band.all
     render :edit    
   end
 
@@ -16,23 +25,27 @@ class AlbumsController < ApplicationController
       redirect_to album_url(@album)
 
     else
-      render json: @album.errors.full_messages  
+      falsh[:errors] = @album.errors.full_messages
+      redirect_to album_url(@album)  
     end
+    
   end
 
   def new
     @album = Album.new
+    @bands = Band.all
     @album.band_id = params[:band_id]
     render :new 
   end
 
   def create
-    @album = Album.new(params[:id])
-    if @album.update(album_params)
+    @album = Album.new(album_params)
+    if @album.save
       debugger
       redirect_to album_url(@album.id)
     else
-      render json: @album.errors.full_messages  
+      flash[errors] = @album.errors.full_messages  
+      redirect_to band_url(@album.band_id)
     end
   end
 

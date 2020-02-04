@@ -1,7 +1,6 @@
 <h1>Here's all the Bands!</h1>
 <ul>
 <% @bands.each do |band|  %>
-  <li><%= band.name %></li>
-  <li><a href="<%= band_url(band) %>">show detail</a></li>
+  <li><a href="<%= band_url(band) %>"><%= band.name %></a></li>
 <% end%>
 </ul>

@@ -1,0 +1,35 @@
+<label>Title:
+<%= @track.title %>
+<%= link_to "Edit", edit_track_url(@track) %>
+</label>
+<br>
+<label >ORD:
+<%= @track.ord %>
+</label>
+<br>
+<label>Lyrics:
+<%= @track.lyrics %>
+</label>
+<br>
+<label>Album:
+<a href="<%= album_url(@track.album) %>"> <%= @track.album.title %> </a>
+</label>
+<br>
+<label>Regular or Bonus:
+<% if @track.regular%>
+    Regular
+<% else %>
+    Bonus
+<% end %>
+</label>
+<br>
+<ul>
+    <% @track.notes.each do |note|  %>
+        <li>
+        <%= render 'notes/note', note: note %>
+        <%= note.author.email %>
+        </li>
+    <% end %>
+</ul>
+
+<%= render 'notes/form', track: @track %>

@@ -29,4 +29,6 @@ class User < ApplicationRecord
     user = User.find_by(email: email)
     user && user.is_password?(password) ? user : nil 
   end
+
+  has_many :notes
 end

@@ -5,4 +5,6 @@ class Album < ApplicationRecord
   def studio
     !self.live
   end
+
+  has_many :tracks
 end

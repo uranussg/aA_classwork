@@ -1,13 +1,49 @@
 <h1>Here's the Album's Info</h1>
-Title: <%= @album.title %>
+<label>
+Title: 
+<%= @album.title %>
+<%= link_to "Edit", edit_album_url(@album) %>
+</label>
 <br>
-Year: <%= @album.year %>
+<label>
+Year: 
+<%= @album.year %>
+</label>
 <br>
-Band: <%= @album.band.name %>
+<label>
+Band: 
+<a href="<%= band_url(@album.band_id) %>"> <%= @album.band.name %></a>
+</label>
 <br>
+<label>
 Type:
 <% if @album.live %>
- Live
+    Live
 <% else %>
- Studio 
- <% end%>
+    Studio 
+<% end%>
+</label>
+<br>
+<label>Tracks
+<ul>
+<% @album.tracks.each do |track| %>
+    <li>
+    <a href="<%= track_url(track) %>"><%= track.title %></a>
+    </li>
+<% end%>
+</ul>
+</label>
+<br>
+<a href="<%= new_album_track_url(@album) %>">Create New Track</a>
+
+<!-- <ul>  
+    <% @album.tracks.each do |track| %>
+    <li>
+    <a href="<%= track_url(track) %>"><%= track.title %></a> 
+    </li>
+    <% end  %>
+</ul> -->
+
+    
+
+

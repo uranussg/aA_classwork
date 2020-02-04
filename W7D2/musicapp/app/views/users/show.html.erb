@@ -1,3 +1,15 @@
 <h1>Here's the Info</h1>
 <%= @user.email %>
-<p>That's it!</p>
+<br>
+<ul>
+    <% @user.notes.each do |note| %> 
+    <li>
+    <%= note.track.title %>
+    <br>
+    <%= note.body %>
+    <br>
+    </li>
+</ul>
+
+
+<% end %>

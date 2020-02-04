@@ -12,24 +12,28 @@
   <body>
   <header>
    <h1>Music App</h1>
-
   </header>
     <% if log_in? %>
+      <%= current_user.email %>
       <form action="<%= session_url(current_user) %>" method='POST'>
       <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden" name="authenticity_token"
+    value="<%= form_authenticity_token %>">
       <input type="submit" value="Sign Out">
       </form>
     <% else%>
-      <form action="<%= new_session_url %>" method='POST'>
-      <input type="hidden" name="_method" value="GET">
-      <input type="submit" value="Sign In">
-      </form>
-      <br>
-      <form action="<%= new_user_url %>" method='POST'>
-      <input type="hidden" name="_method" value="GET">
-      <input type="submit" value="Sign Up">
-      </form>
+      <a href="<%= new_session_url %>">Sign In</a>
+      <a href="<%= new_user_url %>">Sign Up</a>
     <% end %>
+    <br>
+    <% flash[:errors].try(:each) do |error| %>
+      <%= error %>
+    <% end%>
+    <%= link_to "All the Bands", bands_url %>
+    <br>
+    <%= link_to "Homepage", user_url(current_user) %>
+    <br>
+    
     <%= yield %>
   </body>
 </html>

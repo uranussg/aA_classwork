@@ -2,12 +2,21 @@
 <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
-<label>Name
+<label>Band
+<select name="album[band_id]">
+<% @bands.each do |band| %>
+    <option value="<%= band.id %>" <%= "selected" if @album.band_id == band.id %>>
+    <%= band.name %></option>
+    
+<% end %>
+</select>
+</label>
+<label>Name:
     <input type='text' name='album[title]' value=''>
 </label>
 <br>
-<label>Year
-    <input type='date' name='album[year]' value=''>
+<label>Year:
+    <input type='text' name='album[year]' value=''>
 </label>
 <br>
 <select name="album[live]">Live or Studio

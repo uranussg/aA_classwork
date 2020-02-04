@@ -1,0 +1,30 @@
+<form action="<%= track_url(@track) %>" method="POST">
+<input type="hidden" name="_method" value="PATCH">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<label>Title  
+<input type="text" name="track[title]" value="<%= @track.title %>">
+</label>
+<label>ORD
+<input type="text" name="track[ord]" value="<%= @track.ord %>">
+</label>
+<br>
+<label>Album
+<select name="track[album_id]">
+    <% @albums.each do |album| %>
+        <option value="<%= album.id %>" <%= "selected" if @track.album_id == album.id%>>      
+        <%= album.title %></option>
+    <% end %>
+</select>
+</label>
+<br>
+<label>Regular or Bonus
+    <input type="radio" name="track[regular]" value="true" <%= "checked" if @track.regular%> >Regular
+    <input type="radio" name="track[regular]" value="false"<%= "checked" if @track.bonus %>>Bonus
+</label>
+<br>
+<label>Lyrics
+<textarea name="track[lyrics]"  cols="30" rows="10"><%= @track.lyrics %></textarea>
+</label>
+<br>
+<input type="submit" value="Update">
+</form>
