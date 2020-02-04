@@ -1,0 +1,21 @@
+<h1>Posts#new</h1>
+<p>Find me in app/views/posts/new.html.erb</p>
+<form action="<%= posts_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<label>Title: 
+<input type="text" name="post[title]" >
+</label>
+<label>Url:
+<input type="text" name="post[url]" >
+</label>
+<label>Content:
+<input type="text" name="post[content]" >
+</label>
+<input type="hidden" name="post[user_id]" value="<%= @post.user_id %>">
+
+<% @subs.each do |sub|%>
+<input type="checkbox" name="post[subs][]" value="<%= sub.id %>"> 
+<%= sub.title %>
+<% end%>
+  <button>Submit</button>
+</form>

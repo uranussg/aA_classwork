@@ -1,0 +1,12 @@
+<h1>Posts#show</h1>
+<p>Find me in app/views/posts/show.html.erb</p>
+
+<%= @post.content %>
+<% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+  <a href="<%= comment_url(comment) %>">
+    <%= comment.content %>
+  </a>
+  
+<% end %>
+
+<%= render "comments/new", post:@post %>

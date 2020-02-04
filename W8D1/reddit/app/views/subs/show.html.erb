@@ -1,0 +1,16 @@
+<h1>Subs#show</h1>
+<p>Find me in app/views/subs/show.html.erb</p>
+
+
+<label>Title:
+  <%= @sub.title %>
+    <%= link_to "edit", edit_sub_url %>
+</label>
+<br>
+<label>Description:
+  <%= @sub.description %>
+</label>
+<br>
+<label>Moderator:
+  <%= @sub.moderator.username %>
+</label>

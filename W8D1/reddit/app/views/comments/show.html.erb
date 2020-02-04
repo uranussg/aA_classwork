@@ -1,0 +1,24 @@
+<h1>Comments#show</h1>
+<p>Find me in app/views/comments/show.html.erb</p>
+
+
+<%= @comment.content %>
+<% @comment.child_comments.try(:each) do |child_comment| %>
+    <a href="<%= comment_url(child_comment) %>">
+      <%= child_comment.content %>
+    </a>
+<% end %>
+
+
+
+<form action="<%= comments_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+  <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>">
+  <label>Content
+    <input type="text" name="comment[content]">
+  </label>
+  <button>Create Comment</button>
+
+</form>

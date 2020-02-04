@@ -1,0 +1,17 @@
+<h1>Subs#edit</h1>
+<p>Find me in app/views/subs/edit.html.erb</p>
+
+<form action="<%= sub_url %>" method='POST'>
+<input type="hidden" name="_method" value="PATCH">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<label>Title:
+<input type="text" name="sub[title]" value="<%= @sub.title %>">
+</label>
+
+<label>Description
+<input type="text" name="sub[description]" value="<%= @sub.description %>">
+</label>
+
+
+<button>Update Sub</button>
+</form>
