@@ -12,9 +12,11 @@
 <input type="text" name="post[content]" >
 </label>
 <input type="hidden" name="post[user_id]" value="<%= @post.user_id %>">
+<%# <input type="hidden" name="post[sub_ids][]" value="">  %>
 
-<% @subs.each do |sub|%>
-<input type="checkbox" name="post[subs][]" value="<%= sub.id %>"> 
+
+<% @subs.try(:each) do |sub|%>
+<input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"> 
 <%= sub.title %>
 <% end%>
   <button>Submit</button>

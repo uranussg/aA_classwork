@@ -1,2 +1,15 @@
 <h1>Posts#edit</h1>
 <p>Find me in app/views/posts/edit.html.erb</p>
+
+<form action="<%= post_url(@post) %>" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="text" name="post[title]" value="<%= @post.title %>">
+<input type="text" name="post[content]" value="<%= @post.content %>">
+<input type="text" name="post[url]" value="<%= @post.url %>">
+<% @subs.each do |sub|%>
+    <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"> 
+    <%= sub.title %>
+<% end%>
+<button>Update</button>
+</form>

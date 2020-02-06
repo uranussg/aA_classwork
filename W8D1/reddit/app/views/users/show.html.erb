@@ -4,8 +4,20 @@
 <%= @user.username %>
 <br>
 <%= link_to "create new sub", new_user_sub_url(@user) %>
-
+<br>
+<%= link_to "create new post", new_user_post_url(@user) %>
+<br>
+My subs:
+<br>
 <% @user.subs.each do |sub|%>
 
   <a href="<%= sub_url(sub) %>"> <%= sub.title %></a>
+  <br>
 <% end %>
+<br>
+My posts:
+<br>
+<% @user.posts.each do |post| %>
+  <%= link_to post.title, post_url(post) %>
+  <br>
+<%end %>

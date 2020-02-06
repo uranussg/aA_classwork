@@ -17,18 +17,15 @@
       <br>
     <% end %>
     <% if logged_in? %>
+      <%= current_user.username %>
+      <br>
+      <%= link_to "Homepage", user_url(current_user) %>
+      <br>
       <%= button_to "Log Out", session_url, method: :delete%>
+      <br>
     <% else %>
-      <form action="<%= session_url %>", method="POST">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <label>Username:
-      <input type="text" name="user[username]" value="">
-      </label>
-      <label>Password:
-      <input type="password" name="user[password]" value="">
-      </label>
-      <button> Sign In</button>       
-      </form>
+      <%= link_to "Sign In", new_session_url %>
+      <%= link_to "Sign Up", new_user_url %>
     <% end %>
 
     <%= yield %>

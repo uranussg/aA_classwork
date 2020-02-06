@@ -3,6 +3,8 @@
 
 
 <%= @comment.content %>
+<%= link_to 'Edit', edit_comment_url(@comment) %>
+<%= button_to "Delete", comment_url(@comment), method: :delete %>
 <% @comment.child_comments.try(:each) do |child_comment| %>
     <a href="<%= comment_url(child_comment) %>">
       <%= child_comment.content %>

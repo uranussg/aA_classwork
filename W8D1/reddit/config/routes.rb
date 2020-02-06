@@ -17,6 +17,6 @@ resources :posts, except: [:index, :new] do
   resources :comments, only: :new
 end
 
-resources :comments, only: [:show, :create]
+resources :comments, except: :new
 
 end

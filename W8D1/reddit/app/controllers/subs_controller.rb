@@ -1,4 +1,8 @@
 class SubsController < ApplicationController
+
+  def index
+    @subs = Sub.all
+  end
   def new
     @sub = Sub.new
     @sub.user_id = params[:user_id]

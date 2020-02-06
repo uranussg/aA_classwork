@@ -4,7 +4,7 @@
 
 <label>Title:
   <%= @sub.title %>
-    <%= link_to "edit", edit_sub_url %>
+  <%= link_to "edit", edit_sub_url(@sub) %>
 </label>
 <br>
 <label>Description:
@@ -13,4 +13,11 @@
 <br>
 <label>Moderator:
   <%= @sub.moderator.username %>
+</label>
+
+<label>Posts
+  <% @sub.posts.each do |post| %>
+  <%= link_to "#{post.title}", post_url(post) %>
+  <br>
+  <% end %>
 </label>
