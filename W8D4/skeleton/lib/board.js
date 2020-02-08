@@ -125,8 +125,9 @@ Board.prototype.isValidPos = function (pos) {
 //     if (flag === 2) {
 //       // 
 //       // console.log(piecesToFlip.concat(toFlip) )
+//       // piecesToFlip = piecesToFlip.concat(toFlip)
 //       return piecesToFlip.concat(toFlip) 
-//       // 
+//       // return piecesToFlip
 //     }
 //     else {
 //       // debugger
@@ -150,9 +151,9 @@ function _positionsToFlip(board, pos, color, dir, piecesToFlip) {
   }
   else {
     debugger
-     piecesToFlip.push(board.getPiece(newPos))
-     let nPos = newPos
-    _positionsToFlip(board, nPos, color, dir, piecesToFlip)
+    //  piecesToFlip.push(board.getPiece(newPos))
+    //  let nPos = newPos
+    return _positionsToFlip(board, newPos, color, dir, piecesToFlip.concat([board.getPiece(newPos)]))
   }
 
 }
@@ -168,12 +169,13 @@ Board.prototype.placePiece = function (pos, color) {
 
   this.grid[pos[0]][pos[1]] = new Piece(color);
   let that = this
-  let pieceToFlip = []
+  let piecesToFlip = []
   Board.DIRS.forEach(dir => {debugger
-    pieceToFlip = _positionsToFlip(that, pos, color, dir, pieceToFlip) || pieceToFlip
+    piecesToFlip = _positionsToFlip(that, pos, color, dir, piecesToFlip) || piecesToFlip
+    // _positionsToFlip(that, pos, color, dir, piecesToFlip)
   })
 
-  pieceToFlip.forEach(  piece => { 
+  piecesToFlip.forEach(  piece => { 
     debugger
     piece.flip()})
 
@@ -214,15 +216,16 @@ Board.prototype.validMove = function (pos, color) {
     return false
   }
   else {let that = this
-    let pieceToFlip = []
+    let piecesToFlip = []
     Board.DIRS.forEach(dir => {
       debugger
-      pieceToFlip = _positionsToFlip(that, pos, color, dir, pieceToFlip) || pieceToFlip
+      piecesToFlip = _positionsToFlip(that, pos, color, dir, piecesToFlip) || piecesToFlip
+      // _positionsToFlip(that, pos, color, dir, piecesToFlip)
      
     })
 
 
-    return pieceToFlip.length > 0
+    return piecesToFlip.length > 0
   }
 };
 
@@ -232,12 +235,12 @@ Board.prototype.validMove = function (pos, color) {
  */
 Board.prototype.validMoves = function (color) {
   // let that = this
-  // let pieceToFlip = []
+  // let piecesToFlip = []
   // Board.DIRS.forEach(dir => {
-  //   _positionsToFlip(that, pos, color, dir, pieceToFlip)
+  //   _positionsToFlip(that, pos, color, dir, piecesToFlip)
   // })
 
-  // return pieceToFlip
+  // return piecesToFlip
   let validMoves = []
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j< 8; j++) {
@@ -255,5 +258,5 @@ module.exports = Board;
 
 b = new Board()
 // // b.isMine()
-b.validMove([4,2], "white")
+b.validMove([2, 3], "white")
 
