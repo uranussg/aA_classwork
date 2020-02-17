@@ -1,0 +1,41 @@
+/* PHASE 9: Forms */
+.content-main {
+  background-color: blue;
+  display: flex;
+}
+
+.post {
+  background-color: red;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.post-profile {
+  background-image: url("../images/cat.jpg");
+  background-size: cover;
+  width: 65px;
+  height: 65px;
+  border: 1px black solid;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.post-body {
+  display: flex;
+  background-color: lightgrey;
+  border: 1px gray solid;
+  border-radius: 5px;
+  width: calc(100% - 85px);
+  font-weight: bold;
+}
+
+.post-body label {
+  display: block;
+  margin: 20px;
+}
+
+.post-body input {
+  background-color: white;
+}
+
