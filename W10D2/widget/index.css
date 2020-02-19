@@ -1,0 +1,19 @@
+.clock {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  color:yellow;
+  /* background-color: yellow ; */
+  background-image: url(https://i.pinimg.com/474x/30/f3/b9/30f3b99c7ecc7431a10c1068278a39de.jpg);
+  background-size: contain;
+  /* background-position-y: 1/2 em; */
+  border: 1px solid black
+}
+
+
+.time, .date{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
